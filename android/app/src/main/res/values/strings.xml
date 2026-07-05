@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fri Camper</string>
+    <string name="tracking_notification_title">Recording the route</string>
+    <string name="tracking_notification_text">Logging a GPS point every few minutes</string>
+</resources>
