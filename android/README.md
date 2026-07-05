@@ -13,6 +13,16 @@ together. Saving a post only writes a bundle to app storage; a WorkManager job
 pushes queued bundles whenever the phone has connectivity and retries with
 backoff when it doesn't. Losing signal just means the queue grows.
 
+## Prerequisites & status
+
+- Android Studio Ladybug (2024.2) or newer — AGP 8.7.3 requires it. The
+  bundled JDK is fine (needs 17+). Gradle 8.11.1 downloads via the wrapper;
+  SDK 35 installs on first sync.
+- Runs on any device/emulator with Android 8.0+ (minSdk 26).
+- **Heads up:** this scaffold was written on a machine without an Android
+  SDK, so it has never been compiled. The APIs used are boring and stable,
+  but budget a few minutes for small fixes on the first sync/build.
+
 ## Setup
 
 1. Open the `android/` folder in Android Studio (it will download the Gradle

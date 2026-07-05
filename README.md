@@ -1,7 +1,23 @@
 # Iceland by Camper
 
-Travel blog for a camper-van trip around Iceland. Static site built with [Astro](https://astro.build),
-with one interactive SVG map island written in Vue. See `project-plan.md` for the full design.
+Travel blog for a camper-van trip around Iceland, live at
+[fri.sjomli.is](https://fri.sjomli.is). Static site built with
+[Astro](https://astro.build), with one interactive SVG map island written in
+Vue. See `project-plan.md` for the design and current status.
+
+## Repo layout
+
+| Path       | What it is                                                        |
+| ---------- | ----------------------------------------------------------------- |
+| `src/`     | The Astro site (content, map component, styles)                   |
+| `scripts/` | `build-map.mjs` (map geometry) and `fetch-weather.mjs` (weather)  |
+| `android/` | Companion Android app for publishing from the road — own README   |
+
+## Prerequisites
+
+- Node 20+ and npm (site + scripts)
+- `npm install` after cloning
+- The Android app needs Android Studio — see `android/README.md`
 
 ## Commands
 
@@ -61,3 +77,16 @@ tap the sea (or "← whole country") to zoom out. Nearby stops cluster into a
 numbered badge — zooming in splits them. The scrubber under the map moves a
 day-by-day horizon: everything after the selected day grays out on the map and
 hides in the feed.
+
+## Deployment
+
+The site is fully static: `npm run build` → `dist/`. Hosting builds and
+deploys on every push to `main` — which means publishing a post is just a
+push, whether from a laptop or from the Android app. Note that pushes only
+touching `android/` also trigger a (harmless) site rebuild.
+
+Data files the site reads: posts in `src/content/posts/`, stats in
+`src/data/stats.json`, planned destinations in `src/data/targets.json`, map
+geometry in `src/data/iceland-map.json` (generated, committed). The app also
+commits a GPS trace to `src/data/route.json`, which the site does not render
+yet.

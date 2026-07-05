@@ -47,10 +47,17 @@ A small native Android app as the publishing tool from the road, handling the "c
 
 Until the app exists, the manual fallback works fine: edit markdown and upload photos via GitHub's web UI or a laptop, push whenever there's signal.
 
-## Build order
+## Build order & status
 
-1. Astro site skeleton: post collection, chronological feed, per-post pages with OG tags.
-2. SVG map: stops, straight-line route, viewBox zoom, clustering, target points.
-3. Time scrubber wired to both the map and the post list.
-4. Stats panel + weather-at-build pipeline.
-5. Android companion app.
+1. ✅ Astro site skeleton: post collection, chronological feed, per-post pages with OG tags.
+2. ✅ SVG map: stops, straight-line route, viewBox zoom, clustering, target points.
+3. ✅ Time scrubber wired to both the map and the post list.
+4. ✅ Stats panel + weather-at-build pipeline.
+5. 🚧 Android companion app — fully scaffolded in `android/`, not yet compiled/tested
+   on a real device (see `android/README.md`).
+
+Remaining ideas beyond the build order: render `route.json` (the GPS trace the
+app commits) as the actual driven route instead of straight lines; markdown
+preview and post-editing in the app; a targets editor. The sample posts in
+`src/content/posts/` (days 1–4, July 2026) are placeholders — delete them when
+the real trip starts.
