@@ -1,0 +1,146 @@
+<dialog class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" aria-label="Close">×</button>
+  <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous photo">‹</button>
+  <img class="lightbox-image" alt="" />
+  <button type="button" class="lightbox-nav lightbox-next" aria-label="Next photo">›</button>
+  <p class="lightbox-caption"></p>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
+  if (dialog) {
+    const image = dialog.querySelector('.lightbox-image') as HTMLImageElement;
+    const caption = dialog.querySelector('.lightbox-caption') as HTMLElement;
+
+    let group: HTMLImageElement[] = [];
+    let current = 0;
+
+    function show(index: number) {
+      current = (index + group.length) % group.length;
+      const source = group[current];
+      image.src = source.currentSrc || source.src;
+      image.alt = source.alt;
+      caption.textContent = source.dataset.caption ?? source.alt;
+    }
+
+    function open(clicked: HTMLImageElement, groupEls: HTMLImageElement[]) {
+      group = groupEls;
+      show(group.indexOf(clicked));
+      dialog.showModal();
+    }
+
+    document.addEventListener('click', (event) => {
+      const target = (event.target as HTMLElement).closest<HTMLImageElement>('img[data-lightbox]');
+      if (!target) return;
+      // let cmd/ctrl/middle-click on a link still open the post in a new tab
+      if (event.metaKey || event.ctrlKey || (event as MouseEvent).button === 1) return;
+
+      const container = target.closest<HTMLElement>('[data-lightbox-group]');
+      if (!container) return;
+
+      event.preventDefault();
+      const groupEls = Array.from(container.querySelectorAll<HTMLImageElement>('img[data-lightbox]'));
+      open(target, groupEls);
+    });
+
+    dialog.querySelector('.lightbox-prev')?.addEventListener('click', () => show(current - 1));
+    dialog.querySelector('.lightbox-next')?.addEventListener('click', () => show(current + 1));
+    dialog.querySelector('.lightbox-close')?.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') show(current + 1);
+      if (event.key === 'ArrowLeft') show(current - 1);
+    });
+  }
+</script>
+
+<style>
+  .lightbox {
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  .lightbox::backdrop {
+    background: rgba(20, 17, 13, 0.9);
+  }
+
+  .lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .lightbox-image {
+    max-width: min(92vw, 60rem);
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 0.4rem;
+  }
+
+  .lightbox-caption {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 0;
+    right: 0;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 0.85rem;
+  }
+
+  .lightbox-close,
+  .lightbox-nav {
+    position: absolute;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .lightbox-prev {
+    left: 1rem;
+  }
+
+  .lightbox-next {
+    right: 1rem;
+  }
+</style>

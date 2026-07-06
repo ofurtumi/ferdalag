@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Lightbox from '../components/Lightbox.astro';
 
 interface Props {
   title: string;
@@ -32,5 +33,6 @@ const ogImage = image ? new URL(image, Astro.site) : undefined;
   </head>
   <body>
     <slot />
+    <Lightbox />
   </body>
 </html>

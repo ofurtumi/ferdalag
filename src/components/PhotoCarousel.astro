@@ -11,7 +11,7 @@ const { photos, alt } = Astro.props;
 ---
 
 <div class="photo-carousel" data-photo-carousel>
-  <div class="photo-carousel-viewport">
+  <div class="photo-carousel-viewport" data-lightbox-group>
     {
       photos.map((photo, i) => (
         <Image
@@ -21,6 +21,7 @@ const { photos, alt } = Astro.props;
           sizes="(min-width: 48rem) 40rem, 100vw"
           class="photo-carousel-slide"
           data-index={i}
+          data-lightbox
           loading={i === 0 ? 'eager' : 'lazy'}
         />
       ))
@@ -83,6 +84,7 @@ const { photos, alt } = Astro.props;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease;
+    cursor: zoom-in;
   }
 
   .photo-carousel-slide.is-active {

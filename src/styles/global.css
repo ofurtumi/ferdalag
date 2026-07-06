@@ -154,6 +154,7 @@ img {
 .masonry-item img {
   display: block;
   width: 100%;
+  cursor: zoom-in;
 }
 
 .masonry-caption {

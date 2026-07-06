@@ -23,7 +23,7 @@ const shots = posts.flatMap((post) =>
   </header>
 
   <main class="gallery-wrap">
-    <div class="photo-masonry">
+    <div class="photo-masonry" data-lightbox-group>
       {
         shots.map(({ photo, post }) => {
           const { title, date, location } = post.data;
@@ -38,6 +38,8 @@ const shots = posts.flatMap((post) =>
                 alt={`${title}, ${location}`}
                 widths={[300, 600, 900]}
                 sizes="(min-width: 64rem) 300px, (min-width: 48rem) 33vw, 50vw"
+                data-lightbox
+                data-caption={`${dateLabel} · ${location}`}
               />
               <span class="masonry-caption">
                 {dateLabel} · {location}
