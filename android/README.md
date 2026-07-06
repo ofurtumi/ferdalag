@@ -41,9 +41,10 @@ backoff when it doesn't. Losing signal just means the queue grows.
   driven roads later.
 - **New post** — title, date, place, coordinates (one tap to use GPS),
   excerpt, markdown body, photos (system photo picker → downscaled to 1600px
-  JPEG, committed next to the post so Astro optimizes them), and a weather
-  card that prefills from Open-Meteo and stays fully editable — what you save
-  is what the site shows.
+  JPEG, committed next to the post in a `<slug>/` folder and listed under a
+  `photos:` frontmatter key so Astro optimizes them and can render them as a
+  carousel or gallery), and a weather card that prefills from Open-Meteo and
+  stays fully editable — what you save is what the site shows.
 - **Trip stats** — loads `src/data/stats.json` from the repo, edit/add/remove
   rows, queue the update.
 

@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PhotoCarousel from '../components/PhotoCarousel.astro';
+
+const posts = (await getCollection('posts'))
+  .filter((post) => post.data.photos && post.data.photos.length > 0)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Base
+  title="Gallery — Iceland by Camper"
+  description="Every photo from the trip, in order, with where and when it was taken."
+>
+  <header class="site-header wrap">
+    <h1>Gallery</h1>
+    <p>All the photos from the road, newest first.</p>
+    <p><a href="/">← back to the map</a></p>
+  </header>
+
+  <main class="wrap">
+    <ol class="gallery-timeline">
+      {
+        posts.map((post) => {
+          const { title, date, location, photos } = post.data;
+          const dateLabel = date.toLocaleDateString('en-GB', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+          });
+          return (
+            <li class="gallery-entry">
+              <p class="gallery-entry-meta">
+                <span>{dateLabel}</span>
+                <span>📍 {location}</span>
+              </p>
+              <h2>
+                <a href={`/posts/${post.id}/`}>{title}</a>
+              </h2>
+              {photos!.length > 1 ? (
+                <PhotoCarousel photos={photos!} alt={`${title}, ${location}`} />
+              ) : (
+                <Image
+                  src={photos![0]}
+                  alt={`${title}, ${location}`}
+                  widths={[400, 800, 1200]}
+                  sizes="(min-width: 48rem) 40rem, 100vw"
+                />
+              )}
+            </li>
+          );
+        })
+      }
+    </ol>
+    {
+      posts.length === 0 && (
+        <p class="gallery-empty">No photos yet — they'll show up here once posts have some.</p>
+      )
+    }
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Written from the road, published whenever there's signal.</p>
+  </footer>
+</Base>

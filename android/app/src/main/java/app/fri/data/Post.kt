@@ -38,11 +38,11 @@ fun PostDraft.toMarkdown(imagePaths: List<String>): String = buildString {
         appendLine("  description: ${it.description}")
         appendLine("  windKmh: ${it.windKmh}")
     }
+    if (imagePaths.isNotEmpty()) {
+        appendLine("photos:")
+        for (path in imagePaths) appendLine("  - $path")
+    }
     appendLine("---")
     appendLine()
     appendLine(body.trim())
-    for (path in imagePaths) {
-        appendLine()
-        appendLine("![photo]($path)")
-    }
 }

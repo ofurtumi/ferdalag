@@ -129,6 +129,57 @@ img {
   margin-bottom: 0;
 }
 
+/* --- gallery --- */
+.gallery-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  border-left: 2px solid var(--line);
+}
+
+.gallery-entry {
+  position: relative;
+  padding: 0 0 2rem 1.25rem;
+}
+
+.gallery-entry::before {
+  content: '';
+  position: absolute;
+  left: -0.4rem;
+  top: 0.3rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.gallery-entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.gallery-entry h2 {
+  margin: 0.15rem 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+.gallery-entry h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.gallery-entry h2 a:hover {
+  text-decoration: underline;
+}
+
+.gallery-empty {
+  color: var(--ink-soft);
+}
+
 /* --- footer --- */
 .site-footer {
   padding: 2rem 0 3rem;

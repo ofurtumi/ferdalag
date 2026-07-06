@@ -49,6 +49,25 @@ Vue. See `project-plan.md` for the design and current status.
    schema-checked at build time (`src/content.config.ts`), so mistakes fail
    loudly instead of rendering wrong.
 
+   To attach photos, drop them in a sibling folder named after the post's
+   slug and list them under a `photos:` key:
+
+   ```markdown
+   ---
+   ...
+   photos:
+     - ./day-5-egilsstadir/1.jpg
+     - ./day-5-egilsstadir/2.jpg
+   ---
+   ```
+
+   (`src/content/posts/day-5-egilsstadir/1.jpg`, etc.) They're resolved
+   through `astro:assets`, so they're optimized at build time — no manual
+   resizing needed beyond what the Android app already does. One photo
+   renders as a single image; more than one renders as a clickable,
+   looping carousel on the home feed and `/gallery`, and as a full grid on
+   the post's own page.
+
 2. `npm run weather` — fetches that day's weather from Open-Meteo by date +
    coordinates and freezes it into the frontmatter. Posts that already have a
    `weather:` block are never touched, so to override a nonsense value just
@@ -84,6 +103,10 @@ The site is fully static: `npm run build` → `dist/`. Hosting builds and
 deploys on every push to `main` — which means publishing a post is just a
 push, whether from a laptop or from the Android app. Note that pushes only
 touching `android/` also trigger a (harmless) site rebuild.
+
+`/gallery` shows every post's photos as a chronological (newest-first)
+timeline with date and location — it's just another static page, generated
+from the same `photos:` frontmatter.
 
 Data files the site reads: posts in `src/content/posts/`, stats in
 `src/data/stats.json`, planned destinations in `src/data/targets.json`, map
