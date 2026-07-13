@@ -1,4 +1,5 @@
 ---
+import '../styles/layout.css'
 import '../styles/global.css';
 import Lightbox from '../components/Lightbox.astro';
 
@@ -12,10 +13,11 @@ interface Props {
 const { title, description, image } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(image, Astro.site) : undefined;
+import StatsPanel from '../components/StatsPanel.astro';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="is">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,6 +34,20 @@ const ogImage = image ? new URL(image, Astro.site) : undefined;
     <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
   </head>
   <body>
+    <header class="site-header">
+      <section>
+        <div>
+          <h1>Yfir Ísland</h1>
+          <p>Gamall bíll, stemmning, stengur og bjór</p>
+        </div>
+        <nav>
+          <a href="/gallery/" tooltip="Skoða myndir">📷</a>
+          <a href="/" tooltip="Skoða færslur">📖</a>
+        </nav>
+      </section>
+
+      <StatsPanel />
+    </header>
     <slot />
     <Lightbox />
   </body>

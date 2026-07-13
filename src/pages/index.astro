@@ -25,16 +25,8 @@ const stops = posts.map((p) => ({
   title="Yfir Ísland"
   description="Keyrum um og skoðum allt í kring."
 >
-  <header class="site-header wrap">
-    <h1>Yifr Ísland</h1>
-    <p>Ýmsar ferðir og uppkomur innan þeirra.</p>
-    <p><a href="/gallery/">📷 Gallery</a></p>
-  </header>
-
   <main class="wrap">
     <IcelandMap client:load stops={stops} targets={targets} />
-
-    <StatsPanel />
 
     <section aria-label="Travel log">
       {posts.map((post) => <PostArticle post={post} linkTitle />)}
@@ -42,6 +34,6 @@ const stops = posts.map((p) => ({
   </main>
 
   <footer class="site-footer wrap">
-    <p>Written from the road, published whenever there's signal.</p>
+    <p>Skrifað á leiðinni einhvert annað. Hægt að skoða annað eftir mig á <a href="https://sjomli.is">sjomli.is</a></p>
   </footer>
 </Base>

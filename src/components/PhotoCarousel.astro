@@ -65,9 +65,9 @@ const { photos, alt } = Astro.props;
   .photo-carousel {
     position: relative;
     margin: 1rem 0;
-    border-radius: 0.75rem;
     overflow: hidden;
     background: var(--line);
+    border: 1px solid var(--line);
   }
 
   .photo-carousel-viewport {
@@ -96,12 +96,11 @@ const { photos, alt } = Astro.props;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    border: none;
-    background: rgba(43, 38, 32, 0.45);
+    border: 1px solid #fff;
+    background: #000;
     color: #fff;
     width: 2.25rem;
     height: 2.25rem;
-    border-radius: 50%;
     font-size: 1.3rem;
     line-height: 1;
     cursor: pointer;
@@ -111,7 +110,7 @@ const { photos, alt } = Astro.props;
   }
 
   .photo-carousel-nav:hover {
-    background: rgba(43, 38, 32, 0.7);
+    background: #333;
   }
 
   .photo-carousel-prev {
@@ -128,8 +127,7 @@ const { photos, alt } = Astro.props;
     right: 0.5rem;
     margin: 0;
     padding: 0.15rem 0.5rem;
-    border-radius: 1rem;
-    background: rgba(43, 38, 32, 0.45);
+    background: #000;
     color: #fff;
     font-size: 0.75rem;
   }

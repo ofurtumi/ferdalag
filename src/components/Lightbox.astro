@@ -61,14 +61,14 @@
 <style>
   .lightbox {
     padding: 0;
-    border: none;
-    background: transparent;
+    border: 2px solid #000;
+    background: #fff;
     max-width: 100vw;
     max-height: 100vh;
   }
 
   .lightbox::backdrop {
-    background: rgba(20, 17, 13, 0.9);
+    background: rgba(0, 0, 0, 0.85);
   }
 
   .lightbox[open] {
@@ -85,7 +85,6 @@
     max-width: min(92vw, 60rem);
     max-height: 82vh;
     object-fit: contain;
-    border-radius: 0.4rem;
   }
 
   .lightbox-caption {
@@ -102,8 +101,8 @@
   .lightbox-close,
   .lightbox-nav {
     position: absolute;
-    border: none;
-    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid #fff;
+    background: #000;
     color: #fff;
     cursor: pointer;
     display: flex;
@@ -113,7 +112,7 @@
 
   .lightbox-close:hover,
   .lightbox-nav:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: #333;
   }
 
   .lightbox-close {
@@ -121,7 +120,6 @@
     right: 1rem;
     width: 2.25rem;
     height: 2.25rem;
-    border-radius: 50%;
     font-size: 1.4rem;
     line-height: 1;
   }
@@ -131,7 +129,6 @@
     transform: translateY(-50%);
     width: 2.75rem;
     height: 2.75rem;
-    border-radius: 50%;
     font-size: 1.6rem;
     line-height: 1;
   }

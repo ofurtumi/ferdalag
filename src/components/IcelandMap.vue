@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, reactive, onBeforeUnmount, ref, watchEffect } from 'vue';
-import { project, mapSize, mapPath } from '../lib/geo';
+import { computed, reactive, onBeforeUnmount, ref, watchEffect } from "vue";
+import { project, mapSize, mapPath } from "../lib/geo";
 
 export interface MapStop {
   id: string;
@@ -53,16 +53,18 @@ const dayKeys = computed(() => {
 });
 
 const selectedIdx = ref(Math.max(0, dayKeys.value.length - 1));
-const selectedKey = computed(() => dayKeys.value[selectedIdx.value] ?? '9999-12-31');
+const selectedKey = computed(
+  () => dayKeys.value[selectedIdx.value] ?? "9999-12-31",
+);
 const atLatest = computed(() => selectedIdx.value >= dayKeys.value.length - 1);
 
 const dayLabel = computed(() => {
   const k = dayKeys.value[selectedIdx.value];
-  if (!k) return '';
-  return new Date(`${k}T12:00:00Z`).toLocaleDateString('en-GB', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
+  if (!k) return "";
+  return new Date(`${k}T12:00:00Z`).toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
   });
 });
 
@@ -70,9 +72,9 @@ const dayLabel = computed(() => {
 // via their data-post-date attribute.
 watchEffect(() => {
   const key = selectedKey.value;
-  if (typeof document === 'undefined') return; // SSR
-  document.querySelectorAll<HTMLElement>('[data-post-date]').forEach((el) => {
-    el.toggleAttribute('hidden', (el.dataset.postDate ?? '') > key);
+  if (typeof document === "undefined") return; // SSR
+  document.querySelectorAll<HTMLElement>("[data-post-date]").forEach((el) => {
+    el.toggleAttribute("hidden", (el.dataset.postDate ?? "") > key);
   });
 });
 
@@ -92,13 +94,15 @@ const futureStops = computed(() =>
   projectedStops.value.filter((s) => dayKey(s.date) > selectedKey.value),
 );
 
-const pastRoute = computed(() => pastStops.value.map((s) => `${s.x},${s.y}`).join(' '));
+const pastRoute = computed(() =>
+  pastStops.value.map((s) => `${s.x},${s.y}`).join(" "),
+);
 // The future leg continues from the last reached stop so the line stays connected
 const futureRoute = computed(() => {
-  if (!futureStops.value.length) return '';
+  if (!futureStops.value.length) return "";
   const last = pastStops.value[pastStops.value.length - 1];
   const pts = last ? [last, ...futureStops.value] : futureStops.value;
-  return pts.length > 1 ? pts.map((s) => `${s.x},${s.y}`).join(' ') : '';
+  return pts.length > 1 ? pts.map((s) => `${s.x},${s.y}`).join(" ") : "";
 });
 
 // --- clustering (screen-space: threshold shrinks as we zoom in) ---
@@ -139,7 +143,8 @@ function tweenTo(target: { x: number; y: number; w: number; h: number }) {
   const from = { x: vb.x, y: vb.y, w: vb.w, h: vb.h };
   const start = performance.now();
   const dur = 650;
-  const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const ease = (t: number) =>
+    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   const step = (now: number) => {
     const t = Math.min(1, (now - start) / dur);
     const e = ease(t);
@@ -198,7 +203,8 @@ function showAll() {
 
 function goToPost(id: string) {
   const el = document.getElementById(`post-${id}`);
-  if (el && !el.hidden) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (el && !el.hidden)
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
   else window.location.assign(`/#post-${id}`);
 }
 
@@ -228,7 +234,12 @@ function onBackgroundClick() {
 
 // --- hover previews (desktop only, hidden via CSS on touch) ---
 
-const hovered = ref<{ title: string; sub: string; x: number; y: number } | null>(null);
+const hovered = ref<{
+  title: string;
+  sub: string;
+  x: number;
+  y: number;
+} | null>(null);
 
 function hoverCluster(c: Cluster, future = false) {
   const first = c.stops[0];
@@ -240,7 +251,7 @@ function hoverCluster(c: Cluster, future = false) {
         ? `up ahead · ${when}`
         : when;
   hovered.value = {
-    title: c.stops.length > 1 ? 'Several stops' : first.title,
+    title: c.stops.length > 1 ? "Several stops" : first.title,
     sub,
     x: c.x,
     y: c.y,
@@ -248,7 +259,12 @@ function hoverCluster(c: Cluster, future = false) {
 }
 
 function hoverTarget(t: MapTarget & { x: number; y: number }) {
-  hovered.value = { title: t.name, sub: 'planned — not there yet', x: t.x, y: t.y };
+  hovered.value = {
+    title: t.name,
+    sub: "planned — not there yet",
+    x: t.x,
+    y: t.y,
+  };
 }
 
 function unhover() {
@@ -264,7 +280,10 @@ const tooltipStyle = computed(() => {
 });
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  return new Date(iso).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+  });
 }
 </script>
 
@@ -349,7 +368,11 @@ function formatDate(iso: string) {
           class="stop"
           role="button"
           tabindex="0"
-          :aria-label="c.stops.length > 1 ? `${c.stops.length} stops, zoom in` : c.stops[0].title"
+          :aria-label="
+            c.stops.length > 1
+              ? `${c.stops.length} stops, zoom in`
+              : c.stops[0].title
+          "
           @click="onClusterClick(c)"
           @keydown.enter="onClusterClick(c)"
           @mouseenter="hoverCluster(c)"
@@ -381,7 +404,12 @@ function formatDate(iso: string) {
         <span>{{ hovered.sub }}</span>
       </div>
 
-      <button v-if="!isCountryView" class="show-all" type="button" @click="showAll">
+      <button
+        v-if="!isCountryView"
+        class="show-all"
+        type="button"
+        @click="showAll"
+      >
         ← whole country
       </button>
     </div>
@@ -397,7 +425,11 @@ function formatDate(iso: string) {
       />
       <div class="scrub-info">
         <span>Day {{ selectedIdx + 1 }} · {{ dayLabel }}</span>
-        <button v-if="!atLatest" type="button" @click="selectedIdx = dayKeys.length - 1">
+        <button
+          v-if="!atLatest"
+          type="button"
+          @click="selectedIdx = dayKeys.length - 1"
+        >
           skip to latest →
         </button>
       </div>
@@ -433,7 +465,7 @@ svg {
 
 .route {
   fill: none;
-  stroke: var(--accent);
+  stroke: red;
   stroke-linecap: round;
   stroke-linejoin: round;
   pointer-events: none;
@@ -456,7 +488,7 @@ svg {
 }
 
 .stop .dot {
-  fill: var(--accent);
+  fill: red;
   stroke: #faf6ef;
 }
 
@@ -519,10 +551,9 @@ svg {
   padding: 0.6rem 0.9rem 0.7rem;
 }
 
-.scrubber input[type='range'] {
+.scrubber input[type="range"] {
   width: 100%;
   margin: 0;
-  accent-color: var(--accent);
 }
 
 .scrub-info {
@@ -536,7 +567,6 @@ svg {
 .scrub-info button {
   border: none;
   background: none;
-  color: var(--accent);
   font-size: 0.85rem;
   cursor: pointer;
   padding: 0;
