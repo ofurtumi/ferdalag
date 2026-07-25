@@ -10,16 +10,6 @@
     ]
   },
   {
-    "id": "testferd-2026-07",
-    "name": "Testferð",
-    "start": { "name": "Reykjavík", "lat": 64.1395, "lng": -21.8958 },
-    "startDate": "2026-07-01",
-    "stats": [
-      { "label": "Stenmning", "value": "Frábær" },
-      { "label": "Fiskar", "value": "29" }
-    ]
-  },
-  {
     "id": "veidiferd-2026-07",
     "name": "Veiðiferð",
     "start": { "name": "Reykjavík", "lat": 64.1395, "lng": -21.8958 },
