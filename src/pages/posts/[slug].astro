@@ -17,7 +17,7 @@ const tripBase = trip && trip.id !== latestTrip().id ? `/trips/${trip.id}/` : '/
 ---
 
 <Base title={post.data.title} description={description} trip={trip}>
-  <main>
+  <main class="wrap">
     <PostArticle post={post} photoLayout="grid" />
   </main>
 </Base>

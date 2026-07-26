@@ -1,6 +1,6 @@
 ---
-title: 'Aftur í bæinn '
-date: 2026-07-25
+title: "Aftur í bæinn "
+date: 2026-07-24
 trip: veidiferd-2026-07
 location: Heima
 lat: 64.1458
@@ -16,7 +16,7 @@ photos:
   - ./aftur-i-bainn/photo-3.jpg
 ---
 
-Mættur aftur heim eftir góða veislu 🎶 hann á afmæli í dag🎶 
+Mættur aftur heim eftir góða veislu 🎶 hann á afmæli í dag🎶
 
 Líður eins og allur dagurinn hafi fariæ í keyrslu, það er líklega ehv sem ég þarf að venjast, ætla setja fram concrete plan á morgun, hvaða vötn, hvenær og hversvegna 🤔
 
