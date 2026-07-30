@@ -51,15 +51,19 @@
     "stats": [
       {
         "label": "Fiskar",
-        "value": "Núll"
+        "value": "Engir"
       },
       {
         "label": "Vötn",
-        "value": "4"
+        "value": "5"
       },
       {
         "label": "Kílómetrar",
-        "value": "ca. 350"
+        "value": "ca. 500"
+      },
+      {
+        "label": "Húð",
+        "value": "Brunnin"
       }
     ]
   }
