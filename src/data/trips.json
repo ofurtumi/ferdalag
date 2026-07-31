@@ -59,11 +59,19 @@
       },
       {
         "label": "Kílómetrar",
-        "value": "ca. 500"
+        "value": "ca. 700"
       },
       {
         "label": "Húð",
         "value": "Brunnin"
+      },
+      {
+        "label": "Kaffi",
+        "value": "3 bollar"
+      },
+      {
+        "label": "Bjór",
+        "value": "0"
       }
     ]
   }
