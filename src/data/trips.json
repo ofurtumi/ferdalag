@@ -74,5 +74,15 @@
         "value": "18"
       }
     ]
+  },
+  {
+    "id": "hornstrandir",
+    "name": "Hornstrandir",
+    "start": {
+      "name": "Hesteyri",
+      "lat": 66.334521,
+      "lng": -22.874566
+    },
+    "startDate": "2026-08-06"
   }
 ]
