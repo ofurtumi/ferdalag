@@ -6,6 +6,10 @@ location: Hornstrandir
 lat: 66.3317
 lng: -22.8763
 excerpt: Mættum í rigningu
+weather:
+  temp: 8
+  description: rain
+  windKmh: 36
 photos:
   - ./matt-i-rigningu/photo-1.jpg
   - ./matt-i-rigningu/photo-2.jpg
