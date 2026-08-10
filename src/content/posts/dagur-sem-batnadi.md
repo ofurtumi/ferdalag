@@ -7,9 +7,9 @@ lat: 66.3318
 lng: -22.8762
 excerpt: Alltaf halda í vonina
 weather:
-  temp: 10
-  description: Sólin er að kíkja
-  windKmh: 0
+  temp: 6
+  description: drizzle
+  windKmh: 40
 photos:
   - ./dagur-sem-batnadi/photo-1.jpg
 videos:
