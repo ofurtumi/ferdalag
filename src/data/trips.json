@@ -83,6 +83,16 @@
       "lat": 66.334521,
       "lng": -22.874566
     },
-    "startDate": "2026-08-06"
+    "startDate": "2026-08-06",
+    "stats": [
+      {
+        "label": "Rigningardagar",
+        "value": "3"
+      },
+      {
+        "label": "Solardagar",
+        "value": "2"
+      }
+    ]
   }
 ]
