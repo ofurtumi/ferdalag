@@ -3,13 +3,13 @@ title: 'Besti dagur, ever?'
 date: 2026-08-08
 trip: hornstrandir
 location: Hesteyri
-lat: 64.1951
-lng: -21.7
+lat: 66.3317
+lng: -22.8763
 excerpt: Fórum frábæra göngu í góðu veðri
 weather:
   temp: 16
-  description: Heavy næs
-  windKmh: 3
+  description: Illað kósý 
+  windKmh: 4
 photos:
   - ./besti-dagur-ever/photo-1.jpg
   - ./besti-dagur-ever/photo-2.jpg
